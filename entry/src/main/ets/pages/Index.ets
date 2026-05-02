@@ -1,53 +1,92 @@
-import { ArcList, ArcListAttribute, ArcListItem, LengthUnit } from '@kit.ArkUI'
 import { TextModifier } from '../modifier/TextModifier'
+import { Main } from './Main'
+import { SettingsPage } from './Settings'
+import { StatsPage } from './StatsPage'
+import { TechniquesPage } from './TechniquesPage'
+import { SummaryPage } from './SummaryPage'
 
 @Entry
 @Component
 struct Index {
+  @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
   @State textModifier: TextModifier = new TextModifier();
 
   @Builder
-  CustomListItem(title: string, onClick?: () => void) {
-    ArcListItem() {
-      Row() {
-        Text(title)
-          .attributeModifier(this.textModifier)
-      }
-      .width('80%')
-      .justifyContent(FlexAlign.Center)
-      .borderRadius(20)
-      .backgroundColor('#a171cb5b')
-      .height(30)
-      .padding({ right: 8, left: 8 })
-      .onClick(() => {
-        if (onClick) {
-          onClick()
-        }
-      })
+  PageMap(name: string) {
+    if (name === 'Main') {
+      Main()
+    } else if (name === 'Settings') {
+      SettingsPage()
+    } else if (name === 'StatsPage') {
+      StatsPage()
+    } else if (name === 'TechniquesPage') {
+      TechniquesPage()
+    } else if (name === 'SummaryPage') {
+      SummaryPage()
     }
   }
 
-  build() {
-    RelativeContainer() {
-
-      ArcList({ initialIndex: 1 }) {
-        ArcListItem() {
-          Text('Breathing Exercises').fontSize(16).fontColor(Color.White).fontWeight(FontWeight.Bold)
-        }
-        this.CustomListItem('Start', () => this.getUIContext().getRouter().pushUrl({
-          url: 'pages/Main'
-        }))
-        this.CustomListItem('Settings', () => this.getUIContext().getRouter().pushUrl({
-          url: 'pages/Settings'
-        })
-        )
-      }.space({
-        unit: LengthUnit.VP,
-        value: 8
-      })
+  @Builder
+  MenuButton(title: string, onClick?: () => void) {
+    Row() {
+      Text(title)
+        .attributeModifier(this.textModifier)
+        .fontColor('#006064')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
     }
-    .height('100%')
-    .width('100%')
-    .backgroundColor('#ff358027')
+    .width(140)
+    .height(30)
+    .justifyContent(FlexAlign.Center)
+    .borderRadius(15)
+    .backgroundColor('#A9DDE8')
+    .onClick(() => {
+      if (onClick) {
+        onClick()
+      }
+    })
+  }
+
+  build() {
+    Navigation(this.pageStack) {
+      Column() {
+        Column({ space: 8 }) {
+
+          Text('Breathing Exercises')
+            .fontSize(17)
+            .fontWeight(FontWeight.Bold)
+            .fontColor('#006064')
+            .textAlign(TextAlign.Center)
+
+          this.MenuButton('Start', () => {
+            this.pageStack.pushPathByName('Main', null)
+          })
+
+          this.MenuButton('Techniques', () => {
+            this.pageStack.pushPathByName('TechniquesPage', null)
+          })
+
+          this.MenuButton('Statistics', () => {
+            this.pageStack.pushPathByName('StatsPage', null)
+          })
+
+          this.MenuButton('Settings', () => {
+            this.pageStack.pushPathByName('Settings', null)
+          })
+
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.Center)
+
+      }
+      .width('100%')
+      .height('100%')
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .padding({ top: 6, bottom: 6 })
+      .backgroundColor('#E0F7FA')
+    }
+    .hideTitleBar(true)
+    .navDestination(this.PageMap)
   }
 }

@@ -25,6 +25,18 @@ export default class EntryAbility extends UIAbility {
       }
       PersistentStorage.persistProp('time', 1);
       PersistentStorage.persistProp('speed', 1);
+      PersistentStorage.persistProp('selectedTechniqueId', '4-7-8');
+      PersistentStorage.persistProp('streak', 0);
+      PersistentStorage.persistProp('totalMinutes', 0);
+      PersistentStorage.persistProp('sessions', '[]');
+      PersistentStorage.persistProp('lastExerciseDate', '');
+
+      // Custom durations
+      PersistentStorage.persistProp('customInhale', 4);
+      PersistentStorage.persistProp('customHold', 4);
+      PersistentStorage.persistProp('customExhale', 4);
+      PersistentStorage.persistProp('dailyReminder', false);
+
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
   }

@@ -1,5 +1,3 @@
-> **Note:** To access all shared projects, get information about environment setup, and view other guides, please visit [Explore-In-HMOS-Wearable Index](https://github.com/Explore-In-HMOS-Wearable/hmos-index).
-
 # Breathing Exercises
 
 This app guides you through quick and powerful breathing exercises that eliminate stress & anxiety, increase energy, improve endurance, and help you fall asleep.
@@ -7,15 +5,18 @@ This app guides you through quick and powerful breathing exercises that eliminat
 # Preview
 
 <div>
-  <img src="screenshots/ss1.png" width="25%">
-  <img src="screenshots/ss2.png" width="25%">
-  <img src="screenshots/ss3.png" width="25%">
+  <img src="screenshots/ss1.png" width="24%">
+  <img src="screenshots/ss2.png" width="24%">
+  <img src="screenshots/ss3.png" width="24%">
+  <img src="screenshots/ss4.png" width="24%">
 </div>
 
 # Use Cases
 
-- Inhale/Exhale timer
-- Inhale/Exhale speed
+- Changeable Inhale/Hold/Exhale timer and speed from the settings for your custom exercise
+- Ability to pick predetermined techniques form the Techniques Page and ability to pick your custom exercise
+- Statistics Page to show how many consecutive days breathing exercises are done and to see total time
+- Daily reminder in the Settings Page 
 
 # Tech Stack
 
@@ -43,6 +44,10 @@ entry/src/main/ets/
 │       Index.ets
 │       Main.ets
 │       Settings.ets
+│       StatsPage.ets
+│       SummaryPage.ets
+│       TechniquesPage.ets
+
 ```
 
 # Constraints and Restrictions
