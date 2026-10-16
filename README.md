@@ -1,3 +1,5 @@
+> **Note:** To access all shared projects, get information about environment setup, and view other guides, please visit [Explore-In-HMOS Index](https://github.com/Explore-In-HMOS/hmos-index).
+
 # Breathing Exercises
 
 This app guides you through quick and powerful breathing exercises that eliminate stress & anxiety, increase energy, improve endurance, and help you fall asleep.
